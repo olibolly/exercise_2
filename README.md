@@ -1,2 +1,2 @@
 # exercise_2
-# Test git
+# Test git - test server
