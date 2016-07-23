@@ -1,6 +1,7 @@
 from __future__ import absolute_import, print_function, unicode_literals
 from collections import Counter
 from streamparse.bolt import Bolt
+import psycopg2
       
 class TweetCounter(Bolt):
   def initialize(self, conf, ctx):
@@ -9,8 +10,17 @@ class TweetCounter(Bolt):
 
   def process(self, tup):
     word = tup.values[0]
-    # Increment the local count
 
+    conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
+    try:
+    cur = conn.cursor()
+    cur.execute("CREATE DATABASE Tcount")
+    cur.close()
+    conn.close()
+    print "Created Tcount"
+    except:
+    print "Could not create Tcount"​
+    
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
     # Database name: Tcount 
