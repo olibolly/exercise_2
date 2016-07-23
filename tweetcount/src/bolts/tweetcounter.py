@@ -17,9 +17,16 @@ class TweetCounter(Bolt):
       cur.execute("CREATE DATABASE Tcount")
       cur.close()
       conn.close()
-      print "Created Tcount"
+      #print "Created Tcount"
     except:
       print "Could not create Tcount"​
+
+    cur = conn.cursor()
+    cur.execute('''CREATE TABLE Tweetwordcount
+       (word TEXT PRIMARY KEY     NOT NULL,
+       count INT     NOT NULL);''')
+    conn.commit()
+    conn.close()
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
