@@ -5,16 +5,16 @@
 (defn wordcount [options]
    [
     ;; spout configuration
-    {"sentences" (python-spout-spec
+    {"tweets" (python-spout-spec
           options
-          "spouts.sentences.Sentences"
-          ["sentence"]
+          "spouts.tweets.Tweets"
+          ["tweet"]
           )
     }
     ;; bolt configuration 1
     {"parse" (python-bolt-spec
           options
-          {"sentences" :shuffle}
+          {"tweets" :shuffle}
           "bolts.parse.ParseTweet"
           ["valid_words"]
           :p 2
