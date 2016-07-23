@@ -9,14 +9,13 @@
           options
           "spouts.tweetsTest.Sentences"
           ["sentence"]
-          :p 3
           )
     }
     ;; bolt configuration
     {"parse-tweet-bolt" (python-bolt-spec
           options
           {"tweet-spout" :shuffle}
-          "bolts.parse.ParseTweet"
+          "bolts.parseTest.ParseTweet"
           ["valid_words"]
           :p 3
           )
