@@ -13,13 +13,13 @@ class TweetCounter(Bolt):
 
     conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
     try:
-    cur = conn.cursor()
-    cur.execute("CREATE DATABASE Tcount")
-    cur.close()
-    conn.close()
-    print "Created Tcount"
+      cur = conn.cursor()
+      cur.execute("CREATE DATABASE Tcount")
+      cur.close()
+      conn.close()
+      print "Created Tcount"
     except:
-    print "Could not create Tcount"​
+      print "Could not create Tcount"​
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
