@@ -13,12 +13,12 @@ class TweetCounter(Bolt):
 
     conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
     try:
-        cur = conn.cursor()
-        cur.execute("CREATE DATABASE Tcount")
-        cur.close()
-        conn.close()
+      cur = conn.cursor()
+      cur.execute("CREATE DATABASE Tcount")
+      cur.close()
+      conn.close()
     except:
-        print "could not create Tcount"
+      print "could not create Tcount"
 
     cur = conn.cursor()
     cur.execute('''CREATE TABLE Tweetwordcount
