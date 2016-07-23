@@ -75,8 +75,6 @@ class Tweets(Spout):
             if tweet:
                 self.queue().task_done()
                 self.emit([tweet])
-                #testing the script
-                self.log(tweet)
  
         except Queue.Empty:
             self.log("Empty queue exception ")

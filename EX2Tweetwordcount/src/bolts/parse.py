@@ -43,6 +43,7 @@ class ParseTweet(Bolt):
         if not valid_words: return
 
         # Emit all the words
-        self.emit_many(valid_words)
+        #self.emit_many(valid_words)
+        self.log(valid_words)
 
         # tuple acknowledgement is handled automatically

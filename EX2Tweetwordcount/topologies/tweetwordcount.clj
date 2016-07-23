@@ -17,14 +17,14 @@
           {"tweet-spout" :shuffle}
           "bolts.parseTest.ParseTweet"
           ["valid_words"]
-          :p 3
+          :p 2
           )
     "count-bolt" (python-bolt-spec
           options
           {"parse-tweet-bolt" :shuffle}
           "bolts.wordcountTest.TweetCounter"
           ["word" "count"]
-          :p 2
+          :p 1
           )
     }
   ]
