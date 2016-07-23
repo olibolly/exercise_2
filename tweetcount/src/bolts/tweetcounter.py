@@ -5,10 +5,18 @@ from streamparse.bolt import Bolt
 class TweetCounter(Bolt):
   def initialize(self, conf, ctx):
     self.counts = Counter()
+    self.redis = StrictRedis()
 
   def process(self, tup):
     word = tup.values[0]
     # Increment the local count
+
+    # Write codes to increment the word count in Postgres
+    # Use psycopg to interact with Postgres
+    # Database name: Tcount 
+    # Table name: Tweetwordcount 
+    # you need to create both the database and the table in advance.
+
     self.counts[word] += 1
     self.emit([word, self.counts[word]])
     # Log the count - just to see the topology running
