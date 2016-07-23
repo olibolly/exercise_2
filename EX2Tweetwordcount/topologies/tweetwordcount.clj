@@ -22,8 +22,8 @@
           )
     "count-bolt" (python-bolt-spec
           options
-          {"parse-tweet-bolt" ["valid_words"]}
-          "bolts.wordcount.WordCounter"
+          {"parse-tweet-bolt" :shuffle}
+          "bolts.wordcountTest.TweetCounter"
           ["word" "count"]
           :p 2
           )
