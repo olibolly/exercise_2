@@ -11,21 +11,21 @@ class TweetCounter(Bolt):
   def process(self, tup):
     word = tup.values[0]
 
-    conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
-    try:
-      cur = conn.cursor()
-      cur.execute("CREATE DATABASE Tcount")
-      cur.close()
-      conn.close()
-    except:
-      print "could not create Tcount"
+    #conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
+    #try:
+    #  cur = conn.cursor()
+    #  cur.execute("CREATE DATABASE Tcount")
+    #  cur.close()
+    #  conn.close()
+    #except:
+    #  print "could not create Tcount"
 
-    cur = conn.cursor()
-    cur.execute('''CREATE TABLE Tweetwordcount
-           (word TEXT PRIMARY KEY     NOT NULL,
-            count INT     NOT NULL);''')
-    conn.commit()
-    conn.close()
+    #cur = conn.cursor()
+    #cur.execute('''CREATE TABLE Tweetwordcount
+    #       (word TEXT PRIMARY KEY     NOT NULL,
+    #        count INT     NOT NULL);''')
+    #conn.commit()
+    #conn.close()
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
