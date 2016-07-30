@@ -36,7 +36,7 @@ class TweetCounter(Bolt):
     cur = conn.cursor()
 
     #Insert
-    cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s)", (word, self.counts[word]));
+    cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s)", (word, 1));
     conn.commit()
 
     #self.counts[word] += 1
