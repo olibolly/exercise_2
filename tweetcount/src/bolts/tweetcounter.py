@@ -11,7 +11,7 @@ class TweetCounter(Bolt):
   def process(self, tup):
     word = tup.values[0]
 
-    #conn = psycopg2.connect(database="Tcount", user="postgres", password="pass", host="localhost", port="5432")
+    conn = psycopg2.connect(database="tcount", user="w205", password="postgres", host="localhost", port="5432")
     #try:
     #  cur = conn.cursor()
     #  cur.execute("CREATE DATABASE Tcount")
@@ -32,6 +32,28 @@ class TweetCounter(Bolt):
     # Database name: Tcount 
     # Table name: Tweetwordcount 
     # you need to create both the database and the table in advance.
+
+    cur = conn.cursor()
+
+    #Insert
+    cur.execute("INSERT INTO Tweetwordcount (word,count) \
+          VALUES ('test', 1)");
+    conn.commit()
+
+    #Update
+    #Assuming you are passing the tuple (uWord, uCount) as an argument
+    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
+    conn.commit()
+
+    #Select
+    cur.execute("SELECT word, count from Tweetwordcount")
+    records = cur.fetchall()
+    for rec in records:
+       print "word = ", rec[0]
+       print "count = ", rec[1], "\n"
+    conn.commit()
+
+    conn.close()
 
     self.counts[word] += 1
     self.emit([word, self.counts[word]])
