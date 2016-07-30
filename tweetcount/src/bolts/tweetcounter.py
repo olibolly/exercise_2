@@ -36,11 +36,11 @@ class TweetCounter(Bolt):
     cur = conn.cursor()
 
     #Insert
-    #cur.execute("INSERT INTO tweetwordcount (word,count) \
-    #      VALUES ('test', 1)");
-    #conn.commit()
+    cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s)", (word, self.counts[word]));
+    conn.commit()
 
-    self.counts[word] += 1
+    #self.counts[word] += 1
+    
     #self.emit([word, self.counts[word]])
     # Log the count - just to see the topology running
     #self.log('%s: %d' % (word, self.counts[word]))
@@ -49,8 +49,8 @@ class TweetCounter(Bolt):
 
     #Assuming you are passing the tuple (uWord, uCount) as an argument
     #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
-    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word, self.counts[word]))
-    conn.commit()
+    #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
+    #conn.commit()
 
     #Select
     #cur.execute("SELECT word, count from Tweetwordcount")
