@@ -41,16 +41,15 @@ class TweetCounter(Bolt):
     #conn.commit()
 
     self.counts[word] += 1
-    self.emit([word, self.counts[word]])
+    #self.emit([word, self.counts[word]])
     # Log the count - just to see the topology running
-    self.log('%s: %d' % (word, self.counts[word]))
+    #self.log('%s: %d' % (word, self.counts[word]))
 
     #Update
-    uWord = word
-    uCount = self.counts[word]
 
     #Assuming you are passing the tuple (uWord, uCount) as an argument
-    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
+    #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
+    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word, self.counts[word]))
     conn.commit()
 
     #Select
