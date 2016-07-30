@@ -12,20 +12,20 @@ class TweetCounter(Bolt):
     word = tup.values[0]
 
     conn = psycopg2.connect(database="tcount", user="w205", password="postgres", host="localhost", port="5432")
-    #try:
-    #  cur = conn.cursor()
-    #  cur.execute("CREATE DATABASE Tcount")
-    #  cur.close()
-    #  conn.close()
-    #except:
-    #  print "could not create Tcount"
+    # try:
+    #   cur = conn.cursor()
+    #   cur.execute("CREATE DATABASE Tcount")
+    #   cur.close()
+    #   conn.close()
+    # except:
+    #   print "could not create Tcount"
 
-    #cur = conn.cursor()
-    #cur.execute('''CREATE TABLE Tweetwordcount
-    #       (word TEXT PRIMARY KEY     NOT NULL,
-    #        count INT     NOT NULL);''')
-    #conn.commit()
-    #conn.close()
+    # cur = conn.cursor()
+    # cur.execute('''CREATE TABLE Tweetwordcount
+    #        (word TEXT PRIMARY KEY     NOT NULL,
+    #         count INT     NOT NULL);''')
+    # conn.commit()
+    # conn.close()
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
@@ -36,26 +36,31 @@ class TweetCounter(Bolt):
     cur = conn.cursor()
 
     #Insert
-    cur.execute("INSERT INTO Tweetwordcount (word,count) \
-          VALUES ('test', 1)");
-    conn.commit()
-
-    #Update
-    #Assuming you are passing the tuple (uWord, uCount) as an argument
-    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
-    conn.commit()
-
-    #Select
-    cur.execute("SELECT word, count from Tweetwordcount")
-    records = cur.fetchall()
-    for rec in records:
-      print 'word = ', rec[0]
-      print 'count = ', rec[1], '\n'
-    conn.commit()
-
-    conn.close()
+    #cur.execute("INSERT INTO tweetwordcount (word,count) \
+    #      VALUES ('test', 1)");
+    #conn.commit()
 
     self.counts[word] += 1
     self.emit([word, self.counts[word]])
     # Log the count - just to see the topology running
     self.log('%s: %d' % (word, self.counts[word]))
+
+    #Update
+    uWord = word
+    uCount = self.counts[word]
+
+    #Assuming you are passing the tuple (uWord, uCount) as an argument
+    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
+    conn.commit()
+
+    #Select
+    #cur.execute("SELECT word, count from Tweetwordcount")
+    #records = cur.fetchall()
+    #for rec in records:
+    #  print 'word = ', rec[0]
+    #  print 'count = ', rec[1], '\n'
+    #conn.commit()
+
+    conn.close()
+
+    
