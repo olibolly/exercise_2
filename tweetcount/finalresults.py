@@ -24,7 +24,7 @@ if len(sys.argv) == 2:
 	input_word = str(sys.argv[1])
 	print('Total number of occurences of', input_word)
 
-	input_string = "SELECT word, sum(count) as sum_count from tweetwordcount where word = %s group by word" % str(sys.argv[1])
+	input_string = "SELECT word, sum(count) as sum_count from tweetwordcount where word = '%s' group by word" % str(sys.argv[1])
 	cur.execute(input_string)
 	#cur.execute("SELECT word, sum(count) as sum_count from tweetwordcount where word = %s group by word", (input_word))
 	records = cur.fetchall()
