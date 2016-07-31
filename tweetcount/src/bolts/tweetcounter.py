@@ -33,19 +33,19 @@ class TweetCounter(Bolt):
     # Table name: Tweetwordcount 
     # you need to create both the database and the table in advance.
 
+    self.counts[word] += 1
+    self.emit([word, self.counts[word]])
+    # Log the count - just to see the topology running
+    self.log('%s: %d' % (word, self.counts[word]))
+
     cur = conn.cursor()
 
     #Insert
-    cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", ('test2', 2))
+
+    cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
     conn.commit()
 
-    #count += 1
-
-    #self.counts[word] += 1
     
-    #self.emit([word, self.counts[word]])
-    # Log the count - just to see the topology running
-    #self.log('%s: %d' % (word, self.counts[word]))
 
     #Update
 
