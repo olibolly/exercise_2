@@ -21,7 +21,7 @@ class TweetCounter(Bolt):
     #   print "could not create Tcount"
 
     cur = conn.cursor()
-    cur.execute("DROP TABLE tweetwordcount")
+    cur.execute("DROP TABLE tweetwordcount;")
     cur.execute('''CREATE TABLE tweetwordcount
             (word TEXT PRIMARY KEY NOT NULL,
              count INT NOT NULL);''')
