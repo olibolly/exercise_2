@@ -20,12 +20,13 @@ class TweetCounter(Bolt):
     # except:
     #   print "could not create Tcount"
 
-    # cur = conn.cursor()
-    # cur.execute('''CREATE TABLE Tweetwordcount
-    #        (word TEXT PRIMARY KEY     NOT NULL,
-    #         count INT     NOT NULL);''')
-    # conn.commit()
-    # conn.close()
+    cur = conn.cursor()
+    cur.execute("DROP TABLE tweetwordcount")
+    cur.execute('''CREATE TABLE tweetwordcount
+            (word TEXT PRIMARY KEY NOT NULL,
+             count INT NOT NULL);''')
+    conn.commit()
+    conn.close()
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
@@ -41,17 +42,13 @@ class TweetCounter(Bolt):
     cur = conn.cursor()
 
     #Insert
-
     cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
     conn.commit()
 
-    
-
     #Update
-
     #Assuming you are passing the tuple (uWord, uCount) as an argument
     #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
-    #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
+    #cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
     #conn.commit()
 
     #Select
