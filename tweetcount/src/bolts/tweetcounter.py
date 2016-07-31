@@ -11,7 +11,7 @@ class TweetCounter(Bolt):
   def process(self, tup):
     word = tup.values[0]
 
-    conn = psycopg2.connect(database="tcount", user="w205", password="postgres", host="localhost", port="5432")
+    #conn = psycopg2.connect(database="tcount", user="w205", password="postgres", host="localhost", port="5432")
     # try:
     #   cur = conn.cursor()
     #   cur.execute("CREATE DATABASE Tcount")
@@ -20,7 +20,7 @@ class TweetCounter(Bolt):
     # except:
     #   print "could not create Tcount"
 
-    cur = conn.cursor()
+    #cur = conn.cursor()
     #cur.execute('''DROP TABLE tweetwordcount;''')
     #cur.execute('''CREATE TABLE tweetwordcount
     #        (word TEXT PRIMARY KEY NOT NULL,
@@ -43,17 +43,19 @@ class TweetCounter(Bolt):
     #cur = conn.cursor()
 
     if self.counts[word] == 1: 
+      print "hello"
       #Insert
-      cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
+      #cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
       #conn.commit()
 
     elif self.counts[word] > 1:
+      print "bye"
       #Update
       #Assuming you are passing the tuple (uWord, uCount) as an argument
       #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
-      cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
+      #cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
     
-    conn.commit()
+    #conn.commit()
 
     #Select
     #cur.execute("SELECT word, count from tweetwordcount")
@@ -63,6 +65,6 @@ class TweetCounter(Bolt):
     #  print 'count = ', rec[1], '\n'
     #conn.commit()
 
-    conn.close()
+    #conn.close()
 
     
