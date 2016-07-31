@@ -43,13 +43,13 @@ class TweetCounter(Bolt):
     #cur = conn.cursor()
 
     if self.counts[word] == 1: 
-      print "hello"
+      print ("hello")
       #Insert
       #cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
       #conn.commit()
 
     elif self.counts[word] > 1:
-      print "bye"
+      print ("bye")
       #Update
       #Assuming you are passing the tuple (uWord, uCount) as an argument
       #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
