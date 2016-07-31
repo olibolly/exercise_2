@@ -4,8 +4,6 @@ from streamparse.bolt import Bolt
 import psycopg2
 import sys
 
-
-
 conn = psycopg2.connect(database="tcount", user="w205", password="postgres", host="localhost", port="5432")
 cur = conn.cursor()
 
@@ -22,14 +20,13 @@ if len(sys.argv) == 1:
 # If one arg then render that word with total number of counts
 if len(sys.argv) == 2:
 	input_word = str(sys.argv[1])
-	print('Total number of occurences of', input_word)
-
+	
 	input_string = "SELECT word, sum(count) as sum_count from tweetwordcount where word = '%s' group by word" % str(sys.argv[1])
 	cur.execute(input_string)
-	#cur.execute("SELECT word, sum(count) as sum_count from tweetwordcount where word = %s group by word", (input_word))
 	records = cur.fetchall()
 	for rec in records:
-	  print("word = ", rec[0])
-	  print("count = ", rec[1], "\n")
+	  #print("word = ", rec[0])
+	  #print("count = ", rec[1], "\n")
+	  print('Total number of occurences of', input_word, ": ", rec[1])
 	conn.commit()
 	conn.close()	
