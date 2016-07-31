@@ -38,18 +38,18 @@ class TweetCounter(Bolt):
     self.counts[word] += 1
     self.emit([word, self.counts[word]])
     # Log the count - just to see the topology running
-    self.log('%s: %d' % (word, self.counts[word]))
+    
 
     #cur = conn.cursor()
 
     if self.counts[word] == 1: 
-      print ("hello")
+      self.log('%s: %d' % (word, self.counts[word]))
       #Insert
       #cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
       #conn.commit()
 
     elif self.counts[word] > 1:
-      print ("bye")
+      self.log('more than one %s: %d' % (word, self.counts[word]))
       #Update
       #Assuming you are passing the tuple (uWord, uCount) as an argument
       #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
