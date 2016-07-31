@@ -23,7 +23,8 @@ class TweetCounter(Bolt):
     #cur = conn.cursor()
     #cur.execute('''DROP TABLE tweetwordcount;''')
     #cur.execute('''CREATE TABLE tweetwordcount
-    #        (word TEXT PRIMARY KEY NOT NULL,
+    #        (id BIGSERIAL PRIMARY KEY,
+    #         word TEXT PRIMARY KEY NOT NULL,
     #         count INT NOT NULL);''')
     #conn.commit()
     
