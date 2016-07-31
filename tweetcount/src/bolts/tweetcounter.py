@@ -21,11 +21,11 @@ class TweetCounter(Bolt):
     #   print "could not create Tcount"
 
     cur = conn.cursor()
-    #cur.execute("DROP TABLE tweetwordcount;")
-    cur.execute('''CREATE OR REPLACE TABLE tweetwordcount
+    #cur.execute('''DROP TABLE tweetwordcount;''')
+    cur.execute('''CREATE TABLE tweetwordcount
             (word TEXT PRIMARY KEY NOT NULL,
              count INT NOT NULL);''')
-    conn.commit()
+    #conn.commit()
     
     #conn.close()
     
@@ -53,12 +53,13 @@ class TweetCounter(Bolt):
     #conn.commit()
 
     #Select
-    #cur.execute("SELECT word, count from Tweetwordcount")
+    cur.execute("SELECT word, count from tweetwordcount")
+    cur.fetchall()
     #records = cur.fetchall()
     #for rec in records:
     #  print 'word = ', rec[0]
     #  print 'count = ', rec[1], '\n'
-    #conn.commit()
+    conn.commit()
 
     conn.close()
 
