@@ -11,10 +11,12 @@ cur = conn.cursor()
 
 #Select
 cur.execute("SELECT word, sum(count) as sum_count from tweetwordcount group by word order by word")
-records = cur.fetchall()
-for rec in records:
-	print 'word = ', rec[0]
-  print 'count = ', rec[1], '\n'
+cur.fetchall()
+
+#records = cur.fetchall()
+#for rec in records:
+#	print ('word = ', rec[0])
+# print ('count = ', rec[1], '\n')
 conn.commit()
 
 conn.close()
