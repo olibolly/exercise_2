@@ -44,13 +44,13 @@ class TweetCounter(Bolt):
 
     #Insert
     cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
-    conn.commit()
+    #conn.commit()
 
     #Update
     #Assuming you are passing the tuple (uWord, uCount) as an argument
     #cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (uWord, uCount))
-    #cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
-    #conn.commit()
+    cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
+    conn.commit()
 
     #Select
     #cur.execute("SELECT word, count from tweetwordcount")
