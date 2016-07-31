@@ -27,7 +27,7 @@ class TweetCounter(Bolt):
     #         count INT NOT NULL);''')
     #conn.commit()
     
-    #conn.close()
+    #conn.close()i
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
