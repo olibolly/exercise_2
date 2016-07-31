@@ -26,7 +26,8 @@ class TweetCounter(Bolt):
             (word TEXT PRIMARY KEY NOT NULL,
              count INT NOT NULL);''')
     conn.commit()
-    conn.close()
+    
+    #conn.close()
     
     # Write codes to increment the word count in Postgres
     # Use psycopg to interact with Postgres
@@ -39,7 +40,7 @@ class TweetCounter(Bolt):
     # Log the count - just to see the topology running
     self.log('%s: %d' % (word, self.counts[word]))
 
-    cur = conn.cursor()
+    #cur = conn.cursor()
 
     #Insert
     cur.execute("INSERT INTO tweetwordcount (word,count) VALUES (%s, %s);", (word, self.counts[word]))
