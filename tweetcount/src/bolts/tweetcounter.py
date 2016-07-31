@@ -53,13 +53,12 @@ class TweetCounter(Bolt):
     #conn.commit()
 
     #Select
-    cur.execute("SELECT word, count from tweetwordcount")
-    cur.fetchall()
+    #cur.execute("SELECT word, count from tweetwordcount")
     #records = cur.fetchall()
     #for rec in records:
     #  print 'word = ', rec[0]
     #  print 'count = ', rec[1], '\n'
-    conn.commit()
+    #conn.commit()
 
     conn.close()
 
