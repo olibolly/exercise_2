@@ -14,6 +14,6 @@ input_string = "SELECT word, sum(count) as sum_count from tweetwordcount group b
 cur.execute(input_string)
 records = cur.fetchall()
 for rec in records:
-	 print(rec[0], ": ", rec[1], "\n")
+	 print(rec[0], ": ", rec[1])
 conn.commit()
 conn.close()
